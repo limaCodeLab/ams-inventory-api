@@ -103,25 +103,7 @@
   <li>AWS ou GCP (A definir)</li>
 </ul>
 
+<hr>
 
-<h3>Progresso do Projeto</h3>
+<h3>Arquitetura Utilizada</h3>
 
-<ul id="progresso-projeto">
-  <li><input type="checkbox" id="requisitos" onclick="atualizarProgresso()"> Definição de Requisitos</li>
-  <li><input type="checkbox" id="backend" onclick="atualizarProgresso()"> Desenvolvimento Backend</li>
-  <li><input type="checkbox" id="frontend" onclick="atualizarProgresso()"> Desenvolvimento Frontend</li>
-  <li><input type="checkbox" id="testes" onclick="atualizarProgresso()"> Implementação de Testes Automatizados</li>
-  <li><input type="checkbox" id="cicd" onclick="atualizarProgresso()"> Configuração de CI/CD</li>
-  <li><input type="checkbox" id="interface" onclick="atualizarProgresso()"> Desenvolvimento da Interface de Usuário</li>
-  <li><input type="checkbox" id="banco-dados" onclick="atualizarProgresso()"> Integração com Banco de Dados</li>
-  <li><input type="checkbox" id="usabilidade" onclick="atualizarProgresso()"> Testes de Usabilidade e QA</li>
-  <li><input type="checkbox" id="documentacao" onclick="atualizarProgresso()"> Documentação</li>
-  <li><input type="checkbox" id="implantacao" onclick="atualizarProgresso()"> Implantação</li>
-</ul>
-
-<!-- Barra de Progresso -->
-<div id="barra-progresso" style="width: 100%; background-color: #ddd;">
-  <div id="progresso" style="width: 0%; background-color: #4CAF50; height: 30px;"></div>
-</div>
-
-<script src="https://gist.github.com/limaCodeLab/1aec2b4af0b12b7518dc19b8975c5dd5.js"></script>
