@@ -52,6 +52,7 @@
 <h5>Repositório e Controle de Versão</h5>
 <ul>
   <li>GitHub</li>
+  <li>Git</li>
 </ul>
 
 <h5>Testes Automatizados</h5>
@@ -90,7 +91,7 @@
 
 <h5>Gerenciamento de Projetos</h5>
 <ul>
-  <li>Jira Software</li>
+  <li>GitHub</li>
 </ul>
 
 <h5>Hospedagem</h5>
