@@ -108,5 +108,5 @@
 
 <h3>Arquitetura Utilizada</h3>
 <p>Backend: Microservices </p>
-<p>Front-End: Flux ou Component-Based (Em analise)</p>
+<p>Front-End: Component-Based (Em analise)</p>
 
