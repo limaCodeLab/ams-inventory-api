@@ -35,8 +35,10 @@ public class Product implements Serializable {
     @Setter
     private int quantity;
     @Setter
+    @Column(name = "minimal_stock_level")
     private int minimalStockLevel;
     @Setter
+    @Column(name = "maximum_stock_level")
     private int maximumStockLevel;
     private Instant dateCreated;
     @Setter
