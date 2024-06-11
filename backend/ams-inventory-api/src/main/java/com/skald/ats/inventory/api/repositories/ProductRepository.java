@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.skald.ats.inventory.api.entities.Product;
 
 @Repository
-public interface ProjductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
 }
