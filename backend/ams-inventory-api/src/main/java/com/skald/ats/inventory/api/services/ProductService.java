@@ -28,4 +28,25 @@ public class ProductService {
         return repository.save(product);
     }
 
+    public Product update(Long id, Product product) {
+        Product entity = repository.getReferenceById(id);
+        updateProductData(entity, product);
+        return repository.save(entity);
+    }
+
+    public void updateProductData(Product entity, Product product) {
+        entity.setName(product.getName());
+        entity.setDescription(product.getDescription());
+        entity.setSupplier(product.getSupplier());
+        entity.setCategory(product.getCategory());
+        entity.setCostPrice(product.getCostPrice());
+        entity.setSalePrice(product.getSalePrice());
+        entity.setQuantity(product.getQuantity());
+        entity.setMinimalStockLevel(product.getMinimalStockLevel());
+        entity.setMaximumStockLevel(product.getMaximumStockLevel());
+        entity.setExpiryDate(product.getExpiryDate());
+        entity.setStatus(product.getStatus());
+        entity.setBarCode(product.getBarCode());
+    }
+
 }
