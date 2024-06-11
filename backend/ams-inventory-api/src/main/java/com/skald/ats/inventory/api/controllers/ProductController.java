@@ -51,7 +51,7 @@ public class ProductController {
         return ResponseEntity.created(uri).body(product);
     }
 
-    @PutMapping(value = "/update/{id}", params = "id", headers = "Content-Type=application/json")
+    @PutMapping(value = "/update/{id}", headers = "Content-Type=application/json")
     public ResponseEntity<Product> updaEntity(@PathVariable Long id, @RequestBody Product product) {
         Product obj = service.update(id, product);
         return ResponseEntity.ok().body(obj);
