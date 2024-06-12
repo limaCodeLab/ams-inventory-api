@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.skald.ats.inventory.api.entities.Product;
 import com.skald.ats.inventory.api.repositories.ProductRepository;
+import com.skald.ats.inventory.api.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ProductService {
@@ -21,7 +23,7 @@ public class ProductService {
 
     public Product findById(Long id) {
         Optional<Product> product = repository.findById(id);
-        return product.get();
+        return product.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Product insert(Product product) {
@@ -29,9 +31,14 @@ public class ProductService {
     }
 
     public Product update(Long id, Product product) {
-        Product entity = repository.getReferenceById(id);
-        updateProductData(entity, product);
-        return repository.save(entity);
+        try {
+            Product entity = repository.getReferenceById(id);
+            updateProductData(entity, product);
+            return repository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
+        
     }
 
     public void updateProductData(Product entity, Product product) {
