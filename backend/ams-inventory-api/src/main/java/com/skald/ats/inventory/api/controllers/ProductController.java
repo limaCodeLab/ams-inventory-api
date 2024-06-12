@@ -1,5 +1,6 @@
 package com.skald.ats.inventory.api.controllers;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.skald.ats.inventory.api.entities.Product;
 import com.skald.ats.inventory.api.services.ProductService;
@@ -42,7 +45,15 @@ public class ProductController {
 
     @PostMapping(value = "/register", headers = "Content-Type=application/json")
     public ResponseEntity<Product> registerItem(@RequestBody Product product) {
-        Product obj = service.insert(product);
+        product =service.insert(product);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        .buildAndExpand(product.getId()).toUri();
+        return ResponseEntity.created(uri).body(product);
+    }
+
+    @PutMapping(value = "/update", params = "id", headers = "Content-Type=application/json")
+    public ResponseEntity<Product> updaEntity(@RequestParam Long id, @RequestBody Product product) {
+        Product obj = service.update(id, product);
         return ResponseEntity.ok().body(obj);
     }
 
