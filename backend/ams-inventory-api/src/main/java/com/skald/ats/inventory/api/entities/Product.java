@@ -73,14 +73,6 @@ public class Product implements Serializable {
         this.barCode = barCode;
     }
 
-    @Override
-    public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", description=" + description + ", supplier=" + supplier
-                + ", category=" + category + ", costPrice=" + costPrice + ", salePrice=" + salePrice
-                + ", quantity=" + quantity + ", minimalStockLevel=" + minimalStockLevel
-                + ", maximumStockLevel=" + maximumStockLevel + ", dateCreated=" + dateCreated
-                + ", expiryDate=" + expiryDate + ", status=" + status + ", barCode=" + barCode + "]";
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -93,4 +85,14 @@ public class Product implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+    @Override
+    public String toString() {
+        return "Product [id=" + id + ", name=" + name + ", description=" + description + ", supplier=" + supplier
+                + ", category=" + category + ", costPrice=" + costPrice + ", salePrice=" + salePrice
+                + ", quantity=" + quantity + ", minimalStockLevel=" + minimalStockLevel
+                + ", maximumStockLevel=" + maximumStockLevel + ", dateCreated=" + dateCreated
+                + ", expiryDate=" + expiryDate + ", status=" + status + ", barCode=" + barCode + "]";
+    }
+
 }

@@ -19,7 +19,7 @@ import com.skald.ats.inventory.api.entities.Product;
 import com.skald.ats.inventory.api.services.ProductService;
 
 @RestController
-@RequestMapping("/inventory/api/v1/items")
+@RequestMapping("/inventory/api/items")
 public class ProductController {
 
     @Autowired
