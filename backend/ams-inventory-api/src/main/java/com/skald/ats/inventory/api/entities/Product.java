@@ -73,7 +73,6 @@ public class Product implements Serializable {
         this.barCode = barCode;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
