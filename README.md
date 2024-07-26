@@ -65,11 +65,6 @@
   <li>Cypress</li>
 </ul>
 
-<h5>UX</h5>
-<ul>
-  <li>Figma</li>
-</ul>
-
 <h5>Banco de Dados Relacional</h5>
 <ul>
   <li>MySQL ou PostgreSQL (Em análise)</li>
@@ -105,5 +100,4 @@
 
 <h3>Arquitetura Utilizada</h3>
 <p>Backend: Microservices </p>
-<p>Front-End: Component-Based (Em analise)</p>
 
