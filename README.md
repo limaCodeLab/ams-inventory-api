@@ -1,5 +1,5 @@
 
-<h1><b>Skald Auto Mechanic System</b></h1>
+<h1><b>Auto Mechanic System</b></h1>
 <p>Projeto PWA para gerenciamento de uma Oficina Mecânica.</p>
 
 <hr>
@@ -37,16 +37,13 @@
 <ul>
   <li>Java</li>
   <li>JUnit</li>
-  <li>Spring Boot</li>
+  <li>Spring 3+</li>
   <li>OAuth 2.0</li>
 </ul>
 
 <h5>Frontend</h5>
 <ul>
-  <li>HTML5</li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-  <li>React</li>
+  <li>WebFlow - Low Code</li>
 </ul>
 
 <h5>Repositório e Controle de Versão</h5>
