@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.entities;
+package com.skald.ats.inventory.api.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

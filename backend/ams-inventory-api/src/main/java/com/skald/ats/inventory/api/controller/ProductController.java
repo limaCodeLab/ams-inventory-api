@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.controllers;
+package com.skald.ats.inventory.api.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.skald.ats.inventory.api.entities.Product;
-import com.skald.ats.inventory.api.services.ProductService;
+import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.service.ProductService;
 
 @RestController
 @RequestMapping("/inventory/api/items")

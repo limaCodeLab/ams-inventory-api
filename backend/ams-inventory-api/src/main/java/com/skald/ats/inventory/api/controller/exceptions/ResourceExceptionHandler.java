@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.controllers.exceptions;
+package com.skald.ats.inventory.api.controller.exceptions;
 
 import java.time.Instant;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
-import com.skald.ats.inventory.api.services.exceptions.DatabaseException;
-import com.skald.ats.inventory.api.services.exceptions.NoHandlerFoundException;
-import com.skald.ats.inventory.api.services.exceptions.ResourceNotFoundException;
+import com.skald.ats.inventory.api.service.exceptions.DatabaseException;
+import com.skald.ats.inventory.api.service.exceptions.NoHandlerFoundException;
+import com.skald.ats.inventory.api.service.exceptions.ResourceNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 

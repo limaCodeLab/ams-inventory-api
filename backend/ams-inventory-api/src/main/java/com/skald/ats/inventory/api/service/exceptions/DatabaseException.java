@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.services.exceptions;
+package com.skald.ats.inventory.api.service.exceptions;
 
 public class DatabaseException extends RuntimeException {
 

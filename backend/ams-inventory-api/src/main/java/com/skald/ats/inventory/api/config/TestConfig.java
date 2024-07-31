@@ -3,18 +3,18 @@ package com.skald.ats.inventory.api.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import com.skald.ats.inventory.api.config.environments.TestEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.skald.ats.inventory.api.entities.Category;
-import com.skald.ats.inventory.api.entities.Product;
-import com.skald.ats.inventory.api.repositories.CategoryRepository;
-import com.skald.ats.inventory.api.repositories.ProductRepository;
+import com.skald.ats.inventory.api.model.entities.Category;
+import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.repository.CategoryRepository;
+import com.skald.ats.inventory.api.repository.ProductRepository;
 
-@Configuration
-@Profile("test")
+@TestEnv
 public class TestConfig implements CommandLineRunner {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.services.exceptions;
+package com.skald.ats.inventory.api.service.exceptions;
 
 public class NoHandlerFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;

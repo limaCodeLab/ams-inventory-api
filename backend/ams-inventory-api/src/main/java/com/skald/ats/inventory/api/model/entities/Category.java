@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.entities;
+package com.skald.ats.inventory.api.model.entities;
 
 import java.io.Serial;
 import java.io.Serializable;

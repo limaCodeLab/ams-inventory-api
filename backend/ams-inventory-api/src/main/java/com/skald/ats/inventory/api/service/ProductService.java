@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.services;
+package com.skald.ats.inventory.api.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skald.ats.inventory.api.entities.Product;
-import com.skald.ats.inventory.api.repositories.ProductRepository;
-import com.skald.ats.inventory.api.services.exceptions.ResourceNotFoundException;
+import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.repository.ProductRepository;
+import com.skald.ats.inventory.api.service.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service

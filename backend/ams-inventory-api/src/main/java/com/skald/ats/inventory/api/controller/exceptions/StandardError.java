@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.controllers.exceptions;
+package com.skald.ats.inventory.api.controller.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;
