@@ -3,6 +3,7 @@ package com.skald.ats.inventory.api.controller.exceptions;
 import java.time.Instant;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -42,11 +43,19 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
-    @ExceptionHandler(JsonMappingException.class)
-    public ResponseEntity<StandardError> violationRule (JsonMappingException e, HttpServletRequest request) {
+    @ExceptionHandler(ValidationDataException.class)
+    public ResponseEntity<StandardError> violationRule (ValidationDataException e, HttpServletRequest request) {
         String error = "Validation data error";
         HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
         StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(bodyResponseError);
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<StandardError> jsonInvalid (NullPointerException e, HttpServletRequest request) {
+        String error = "null pointer exception";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error,"Null value: " +  e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 

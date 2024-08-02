@@ -3,7 +3,6 @@ package com.skald.ats.inventory.api.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.skald.ats.inventory.api.service.exceptions.NotificationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,6 @@ public class ProductService {
     }
 
     public Product insert(Product product) {
-        validateProduct(product);
         return repository.save(product);
     }
 
@@ -52,15 +50,6 @@ public class ProductService {
         entity.setMinimalStockLevel(product.getMinimalStockLevel());
         entity.setMaximumStockLevel(product.getMaximumStockLevel());
         entity.setStatus(product.getStatus());
-    }
-
-    public void validateProduct (Product product){
-        boolean price = product.getUnitPrice() <= 0.00;
-        boolean minStock = product.getMinimalStockLevel() <= 0;
-        boolean maxStock = product.getMaximumStockLevel() <= product.getMinimalStockLevel();
-        if (price || minStock || maxStock){
-            throw new NotificationException("O valor untiario, minimo de estoque e maximo de estoque devem ser maiores que zero");
-        }
     }
 
 }

@@ -1,6 +1,6 @@
 package com.skald.ats.inventory.api.model.entities;
 
-import com.skald.ats.inventory.api.service.exceptions.NotificationException;
+import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +12,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
+import java.util.Optional;
 
 
 @Getter
@@ -28,26 +29,34 @@ public class Product implements Serializable {
     @NotNull(message = "O nome deve ser informado")
     @Column(nullable = false, length = 100)
     private String name;
+
     @Setter
     private String description;
+
     @Setter
     @NotNull(message = "O fornecedor deve ser informado")
+    @Column(nullable = false)
     private String supplier;
+
     @Setter
     @NotNull(message = "A categoria deve ser informada")
     @Column(nullable = false)
     private String category;
+
     @Setter
     private String status;
 
-    @Positive(message = "O preço de custo deve ser maior que zero.")
+    @Positive
+    @NotNull(message = "O valor unitário deve ser informado")
     @Column(name = "valor_unitario", nullable = false, precision = 2)
     private Double unitPrice;
 
     @Min(value = 1, message = "O nível mínimo de estoque deve ser maior que zero")
+    @NotNull(message = "O nível mínimo de estoque deve ser informado")
     @Column(name = "minimal_stock_level", nullable = false)
     private Integer minimalStockLevel;
 
+    @NotNull(message = "O nível mínimo de estoque deve ser informado")
     @Column(name = "maximum_stock_level", nullable = false)
     private Integer maximumStockLevel;
     private Instant dateCreated;
@@ -72,30 +81,34 @@ public class Product implements Serializable {
     }
 
     public void setUnitPrice(Double unitPrice) {
-        if (unitPrice <= 0.00){
-            throw new NotificationException("O valor unitário deve ser maior que zero");
-        }
+        Optional.ofNullable(unitPrice)
+                .filter(price -> price > 0)
+                .orElseThrow(() -> new ValidationDataException("unitPrice","O valor unitário deve ser maior que zero"));
         this.unitPrice = unitPrice;
     }
 
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new NotificationException("O nome do item deve ser informado");
+            throw new ValidationDataException("name","O nome do item deve ser informado");
         }
         this.name = name;
     }
 
 
-    public void setMinimalStockLevel(int minimalStockLevel) {
+    public void setMinimalStockLevel(Integer minimalStockLevel) {
+        Optional.ofNullable(minimalStockLevel)
+                .orElseThrow(() -> new ValidationDataException("minimalStockLevel","Valor mínimo de estoque não pode ser nulo"));
         if (minimalStockLevel <= 0){
-            throw new NotificationException("O nível mínimo de estoque deve ser maior que zero");
+            throw new ValidationDataException("minimalStockLevel","Valor mínimo de estoque deve ser maior que zero");
         }
         this.minimalStockLevel = minimalStockLevel;
     }
 
-    public void setMaximumStockLevel(int maximumStockLevel) {
+    public void setMaximumStockLevel(Integer maximumStockLevel) {
+        Optional.ofNullable(maximumStockLevel)
+                .orElseThrow(() -> new ValidationDataException("maximumStockLevel","Valor máximo de estoque não pode ser nulo"));
         if (maximumStockLevel <= this.minimalStockLevel){
-            throw new NotificationException("O nível máximo de estoque não pode ser menor ou igual ao nível mínimo de estoque");
+            throw new ValidationDataException("maximumStockLevel","Valor máximo de estoque não pode ser menor ou igual ao nível mínimo de estoque");
         }
         this.maximumStockLevel = maximumStockLevel;
     }
