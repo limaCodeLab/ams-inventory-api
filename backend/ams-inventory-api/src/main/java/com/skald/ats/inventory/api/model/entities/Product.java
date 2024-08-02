@@ -1,6 +1,10 @@
 package com.skald.ats.inventory.api.model.entities;
 
+import com.skald.ats.inventory.api.service.exceptions.NotificationException;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,57 +24,80 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter
+
+    @NotNull(message = "O nome deve ser informado")
+    @Column(nullable = false, length = 100)
     private String name;
     @Setter
     private String description;
     @Setter
+    @NotNull(message = "O fornecedor deve ser informado")
     private String supplier;
     @Setter
+    @NotNull(message = "A categoria deve ser informada")
+    @Column(nullable = false)
     private String category;
     @Setter
-    private double costPrice;
-    @Setter
-    private double salePrice;
-    @Setter
-    private int quantity;
-    @Setter
-    @Column(name = "minimal_stock_level")
-    private int minimalStockLevel;
-    @Setter
-    @Column(name = "maximum_stock_level")
-    private int maximumStockLevel;
-    private Instant dateCreated;
-    @Setter
-    private Instant expiryDate;
-    @Setter
     private String status;
-    @Setter
-    private String barCode;
+
+    @Positive(message = "O preço de custo deve ser maior que zero.")
+    @Column(name = "valor_unitario", nullable = false, precision = 2)
+    private Double unitPrice;
+
+    @Min(value = 1, message = "O nível mínimo de estoque deve ser maior que zero")
+    @Column(name = "minimal_stock_level", nullable = false)
+    private Integer minimalStockLevel;
+
+    @Column(name = "maximum_stock_level", nullable = false)
+    private Integer maximumStockLevel;
+    private Instant dateCreated;
 
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description,
-                   String supplier, String category, double costPrice,
-                   double salePrice, int quantity, int minimalStockLevel,
-                   int maximumStockLevel, Instant dateCreated, Instant expiryDate,
-                   String status, String barCode) {
+    public Product(Long id, String name, String description, String supplier,
+                   String category, Double unitPrice, Integer minimalStockLevel,
+                   Integer maximumStockLevel, Instant dateCreated, String status) {
         this.id = id;
-        this.name = name;
+        setName(name);
         this.description = description;
         this.supplier = supplier;
         this.category = category;
-        this.costPrice = costPrice;
-        this.salePrice = salePrice;
-        this.quantity = quantity;
-        this.minimalStockLevel = minimalStockLevel;
-        this.maximumStockLevel = maximumStockLevel;
+        setUnitPrice(unitPrice);
+        setMinimalStockLevel(minimalStockLevel);
+        setMaximumStockLevel(maximumStockLevel);
         this.dateCreated = dateCreated;
-        this.expiryDate = expiryDate;
         this.status = status;
-        this.barCode = barCode;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        if (unitPrice <= 0.00){
+            throw new NotificationException("O valor unitário deve ser maior que zero");
+        }
+        this.unitPrice = unitPrice;
+    }
+
+    public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new NotificationException("O nome do item deve ser informado");
+        }
+        this.name = name;
+    }
+
+
+    public void setMinimalStockLevel(int minimalStockLevel) {
+        if (minimalStockLevel <= 0){
+            throw new NotificationException("O nível mínimo de estoque deve ser maior que zero");
+        }
+        this.minimalStockLevel = minimalStockLevel;
+    }
+
+    public void setMaximumStockLevel(int maximumStockLevel) {
+        if (maximumStockLevel <= this.minimalStockLevel){
+            throw new NotificationException("O nível máximo de estoque não pode ser menor ou igual ao nível mínimo de estoque");
+        }
+        this.maximumStockLevel = maximumStockLevel;
     }
 
     @Override
@@ -88,10 +115,9 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", description=" + description + ", supplier=" + supplier
-                + ", category=" + category + ", costPrice=" + costPrice + ", salePrice=" + salePrice
-                + ", quantity=" + quantity + ", minimalStockLevel=" + minimalStockLevel
+                + ", category=" + category + ", costPrice=" + unitPrice + ", minimalStockLevel=" + minimalStockLevel
                 + ", maximumStockLevel=" + maximumStockLevel + ", dateCreated=" + dateCreated
-                + ", expiryDate=" + expiryDate + ", status=" + status + ", barCode=" + barCode + "]";
+                + ", status=" + status + "]";
     }
 
 }

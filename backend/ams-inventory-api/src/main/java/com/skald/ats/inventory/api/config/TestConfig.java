@@ -36,14 +36,12 @@ public class TestConfig implements CommandLineRunner {
         categoryRepository.saveAll(Arrays.asList(cat01, cat02, cat03, cat04, cat05, cat06, cat07));
 
         Product product01 = new Product(null,"Filtro de Óleo","Filtro de óleo para motor", 
-        "Fornecedor A", "Filtros", 10.00, 15.00, 50, 
-        5, 100, Instant.parse("2019-06-20T19:53:07Z"), 
-        Instant.parse("2024-07-22T15:21:22Z"), "disponível", "1234567890123");
+        "Fornecedor A", "Filtros", 26.50,
+        5, 100, Instant.parse("2019-06-20T19:53:07Z"), "disponível");
 
         Product product02 = new Product(null,"Bateria 12V","Bateria automotiva 12V 60Ah", 
-        "Fornecedor C", "Baterias", 150.00, 305.00, 20, 
-        5, 50, Instant.parse("2019-06-20T19:53:07Z"), 
-        Instant.parse("2024-07-22T15:21:22Z"), "disponível", "1234567890523");
+        "Fornecedor C", "Baterias", 150.00,
+        1, 5, Instant.parse("2019-06-20T19:53:07Z"), "disponível");
 
         productRepository.saveAll(Arrays.asList(product01, product02));
 

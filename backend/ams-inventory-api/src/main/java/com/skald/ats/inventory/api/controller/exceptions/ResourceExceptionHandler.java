@@ -2,6 +2,7 @@ package com.skald.ats.inventory.api.controller.exceptions;
 
 import java.time.Instant;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,6 +38,14 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> noResourceFound (NoHandlerFoundException e, HttpServletRequest request) {
         String error = "Endpoint not found";
         HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(bodyResponseError);
+    }
+
+    @ExceptionHandler(JsonMappingException.class)
+    public ResponseEntity<StandardError> violationRule (JsonMappingException e, HttpServletRequest request) {
+        String error = "Validation data error";
+        HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
         StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
