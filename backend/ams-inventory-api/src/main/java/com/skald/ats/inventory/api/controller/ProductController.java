@@ -36,13 +36,8 @@ public class ProductController {
         return ResponseEntity.ok().body(product);
     }
 
-    @GetMapping(params = "id")
-    public ResponseEntity<Product> findByIdParam(@RequestParam Long id) {
-        Product obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
-    }
-
-    @PostMapping(value = "/register", headers = "Content-Type=application/json")
+    @PostMapping(headers = "Content-Type=application/json")
+    @ResponseBody
     public ResponseEntity<Product> registerItem(@Valid @RequestBody Product product) {
         Product item = service.insert(product);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -51,20 +46,9 @@ public class ProductController {
 
     }
 
-    @PutMapping(value = "/update", params = "id", headers = "Content-Type=application/json")
+    @PutMapping(params = "id", headers = "Content-Type=application/json")
     public ResponseEntity<Product> updaEntity(@RequestParam Long id, @RequestBody Product product) {
         Product obj = service.update(id, product);
         return ResponseEntity.ok().body(obj);
     }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach((FieldError error) ->
-                errors.put(error.getField(), error.getDefaultMessage())
-        );
-        return ResponseEntity.unprocessableEntity().body(errors);
-    }
-
 }

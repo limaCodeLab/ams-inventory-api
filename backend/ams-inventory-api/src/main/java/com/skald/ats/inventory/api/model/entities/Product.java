@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -59,7 +60,8 @@ public class Product implements Serializable {
     @NotNull(message = "O nível mínimo de estoque deve ser informado")
     @Column(name = "maximum_stock_level", nullable = false)
     private Integer maximumStockLevel;
-    private Instant dateCreated;
+    @Column(updatable = false)
+    private LocalDateTime dateCreated;
 
 
     public Product() {
@@ -67,7 +69,7 @@ public class Product implements Serializable {
 
     public Product(Long id, String name, String description, String supplier,
                    String category, Double unitPrice, Integer minimalStockLevel,
-                   Integer maximumStockLevel, Instant dateCreated, String status) {
+                   Integer maximumStockLevel, String status) {
         this.id = id;
         setName(name);
         this.description = description;
@@ -76,8 +78,13 @@ public class Product implements Serializable {
         setUnitPrice(unitPrice);
         setMinimalStockLevel(minimalStockLevel);
         setMaximumStockLevel(maximumStockLevel);
-        this.dateCreated = dateCreated;
+        setDateCreated();
         this.status = status;
+    }
+
+    @PrePersist
+    public void setDateCreated() {
+        this.dateCreated = LocalDateTime.now();
     }
 
     public void setUnitPrice(Double unitPrice) {
