@@ -1,6 +1,7 @@
 package com.skald.ats.inventory.api.model.entities;
 
 import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
+import com.skald.ats.inventory.api.utils.StringUtils;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +11,6 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -30,8 +30,6 @@ public class Product implements Serializable {
     @NotNull(message = "O nome deve ser informado")
     @Column(nullable = false, length = 100)
     private String name;
-
-    @Setter
     private String description;
 
     @Setter
@@ -72,7 +70,7 @@ public class Product implements Serializable {
                    Integer maximumStockLevel, String status) {
         this.id = id;
         setName(name);
-        this.description = description;
+        setDescription(description);
         this.supplier = supplier;
         this.category = category;
         setUnitPrice(unitPrice);
@@ -80,6 +78,10 @@ public class Product implements Serializable {
         setMaximumStockLevel(maximumStockLevel);
         setDateCreated();
         this.status = status;
+    }
+
+    public void setDescription(String description) {
+        this.description = StringUtils.normalizeString(description);
     }
 
     @PrePersist
