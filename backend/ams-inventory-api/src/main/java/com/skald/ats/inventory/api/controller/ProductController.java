@@ -36,8 +36,7 @@ public class ProductController {
         return ResponseEntity.ok().body(product);
     }
 
-    @PostMapping(headers = "Content-Type=application/json")
-    @ResponseBody
+    @PostMapping(value = {"/register"}, headers = "Content-Type=application/json")
     public ResponseEntity<Product> registerItem(@Valid @RequestBody Product product) {
         Product item = service.insert(product);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

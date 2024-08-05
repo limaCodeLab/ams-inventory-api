@@ -1,5 +1,8 @@
-package com.skald.ats.inventory.api.utils;
+package com.skald.ats.inventory.api.util;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StringUtils {
 
     private static String TEXT_RESULT;

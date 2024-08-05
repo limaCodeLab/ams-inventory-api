@@ -1,7 +1,7 @@
 package com.skald.ats.inventory.api.model.entities;
 
 import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
-import com.skald.ats.inventory.api.utils.StringUtils;
+import com.skald.ats.inventory.api.util.StringUtils;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Getter
 @Entity
-@Table(name = "tb_items")
+@Table(name = "tb_produtcs")
 public class Product implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -27,18 +27,18 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "O nome deve ser informado")
+    @NotNull(message = "Nome deve ser informado")
     @Column(nullable = false, length = 100)
     private String name;
     private String description;
 
     @Setter
-    @NotNull(message = "O fornecedor deve ser informado")
+    @NotNull(message = "Fornecedor deve ser informado")
     @Column(nullable = false)
     private String supplier;
 
     @Setter
-    @NotNull(message = "A categoria deve ser informada")
+    @NotNull(message = "Categoria deve ser informada")
     @Column(nullable = false)
     private String category;
 
@@ -46,16 +46,16 @@ public class Product implements Serializable {
     private String status;
 
     @Positive
-    @NotNull(message = "O valor unitário deve ser informado")
+    @NotNull(message = "Valor unitário deve ser informado")
     @Column(name = "valor_unitario", nullable = false, precision = 2)
     private Double unitPrice;
 
-    @Min(value = 1, message = "O nível mínimo de estoque deve ser maior que zero")
-    @NotNull(message = "O nível mínimo de estoque deve ser informado")
+    @Min(value = 1, message = "Nível mínimo de estoque deve ser maior que zero")
+    @NotNull(message = "Nível mínimo de estoque deve ser informado")
     @Column(name = "minimal_stock_level", nullable = false)
     private Integer minimalStockLevel;
 
-    @NotNull(message = "O nível mínimo de estoque deve ser informado")
+    @NotNull(message = "Nível mínimo de estoque deve ser informado")
     @Column(name = "maximum_stock_level", nullable = false)
     private Integer maximumStockLevel;
     @Column(updatable = false)
@@ -92,13 +92,13 @@ public class Product implements Serializable {
     public void setUnitPrice(Double unitPrice) {
         Optional.ofNullable(unitPrice)
                 .filter(price -> price > 0)
-                .orElseThrow(() -> new ValidationDataException("unitPrice","O valor unitário deve ser maior que zero"));
+                .orElseThrow(() -> new ValidationDataException("unitPrice","Valor unitário deve ser maior que zero e nao pode ser nulo"));
         this.unitPrice = unitPrice;
     }
 
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new ValidationDataException("name","O nome do item deve ser informado");
+            throw new ValidationDataException("name","O nome do produto nao pode ser nulo");
         }
         this.name = name;
     }
