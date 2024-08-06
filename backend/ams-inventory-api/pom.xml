@@ -21,6 +21,8 @@
 		<junit.version>5.10.2</junit.version>
 		<jakarta.version>3.1.0</jakarta.version>
 		<hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+	 	<maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
 	</properties>
 
 	<dependencies>
@@ -98,6 +100,20 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+				<version>${maven.compiler.plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
