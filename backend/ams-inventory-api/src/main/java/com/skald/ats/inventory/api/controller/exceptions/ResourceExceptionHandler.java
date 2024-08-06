@@ -24,7 +24,7 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> resourceNotFound (ResourceNotFoundException e, HttpServletRequest request) {
         String error = "Resource not found";
         HttpStatus status = HttpStatus.NOT_FOUND;
-        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
@@ -32,7 +32,7 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> database (DatabaseException e, HttpServletRequest request) {
         String error = "Database error";
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
@@ -40,7 +40,7 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> noResourceFound (NoHandlerFoundException e, HttpServletRequest request) {
         String error = "Endpoint not found";
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
@@ -48,7 +48,7 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> violationRule (ValidationDataException e, HttpServletRequest request) {
         String error = "Validation data error";
         HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
-        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
@@ -56,7 +56,7 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> jsonInvalid (NullPointerException e, HttpServletRequest request) {
         String error = "Null pointer exception";
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), error,"Null value: " +  e.getMessage(), request.getRequestURI());
+        StandardError bodyResponseError = new StandardError(status.value(), error,"Null value: " +  e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
@@ -72,7 +72,7 @@ public class ResourceExceptionHandler {
                     " " + error.getDefaultMessage());
         }
         String messageError = errors.toString().replaceAll("[={}]", "");
-        StandardError bodyResponseError = new StandardError(Instant.now(), status.value(), nameError, messageError, request.getRequestURI());
+        StandardError bodyResponseError = new StandardError(status.value(), nameError, messageError, request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
