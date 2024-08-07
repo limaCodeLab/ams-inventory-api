@@ -20,7 +20,8 @@
 		<java.version>21</java.version>
 		<junit.version>5.10.2</junit.version>
 		<jakarta.version>3.1.0</jakarta.version>
-		<hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+		<hibernate-core.version>6.5.2.Final</hibernate-core.version>
+		<hibernate-validator.version>7.0.5.Final</hibernate-validator.version>
 		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
 	 	<maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
 	</properties>
@@ -71,7 +72,12 @@
 			<version>${jakarta.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version>
 		</dependency>

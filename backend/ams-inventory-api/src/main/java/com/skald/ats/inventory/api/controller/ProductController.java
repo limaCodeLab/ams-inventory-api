@@ -18,7 +18,7 @@ import com.skald.ats.inventory.api.model.entities.Product;
 import com.skald.ats.inventory.api.service.ProductService;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/product")
 public class ProductController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class ProductController {
         return ResponseEntity.ok().body(product);
     }
 
-    @PostMapping(value = {"/register"}, headers = "Content-Type=application/json")
+    @PostMapping( headers = "Content-Type=application/json")
     public ResponseEntity<Product> registerItem(@Valid @RequestBody Product product) {
         Product item = service.insert(product);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Getter
 @Entity
-@Table(name = "tb_produtcs")
+@Table(name = "tb_product")
 public class Product implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
