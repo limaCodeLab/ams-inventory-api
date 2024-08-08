@@ -1,24 +1,18 @@
 package com.skald.ats.inventory.api.controller;
 
-import java.net.URI;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.skald.ats.inventory.api.model.entities.Product;
-import com.skald.ats.inventory.api.service.ProductService;
+import java.net.URI;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
