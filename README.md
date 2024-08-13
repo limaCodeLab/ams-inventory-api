@@ -1,6 +1,6 @@
 
-<h1><b>Auto Mechanic System</b></h1>
-<p>Projeto PWA para gerenciamento de uma Oficina Mecânica.</p>
+<h1><b>Inventory Service</b></h1>
+<p>EM CONSTRUÇÃO README</p>
 
 <hr>
 
@@ -8,25 +8,7 @@
 <p>Abaixo um pequeno resumo das funcionalidades presentes no sistema:</p>
 
 <ol>
-  <li>Login de acesso</li>
-  <li>Cadastro de novo usuário, confirmação de e-mail e token</li>
-  <li>Painel de entrada (Overview do negócio)</li>
-  <li>Histórico do Cliente e Serviços</li>
-  <li>Criação de Orçamentos (O.S.) e envio via WhatsApp e/ou E-mail</li>
-  <li>Gerenciamento de O.S.</li>
-  <li>Consulta de dados do veículo através da placa</li>
-  <li>Check-list, verificação prévia do veículo de acordo com diagnóstico e possível causa</li>
   <li>Gerenciamento de estoque</li>
-  <li>Gerenciamento de serviços</li>
-  <li>Logout automático após algumas horas de inatividade</li>
-  <li>Emissão de Relatórios Financeiros, Estoque, Serviços, O.S. e Histórico do cliente</li>
-  <li>Visualização de rede de contatos</li>
-  <li>Gerenciamento Fiscal</li>
-  <li>Gerenciamento Financeiro</li>
-  <li>Dashboards</li>
-  <li>Cadastros</li>
-  <li>Configurações do Sistema</li>
-  <li>Suporte Online</li>
 </ol>
 
 <hr>
@@ -67,7 +49,7 @@
 
 <h5>Banco de Dados Relacional</h5>
 <ul>
-  <li>MySQL ou PostgreSQL (Em análise)</li>
+  <li>PostgreSQL</li>
 </ul>
 
 <h5>Diagramas UML</h5>
@@ -88,12 +70,17 @@
 
 <h5>Hospedagem</h5>
 <ul>
-  <li>A definir</li>
+  <li>Render</li>
 </ul>
 
 <h5>Cloud</h5>
 <ul>
-  <li>AWS ou GCP (A definir)</li>
+  <li>AWS </li>
+</ul>
+
+<h5>Documentação </h5>
+<ul>
+  <li>Swagger e Wiki</li>
 </ul>
 
 <hr>
