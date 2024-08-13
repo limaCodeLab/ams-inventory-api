@@ -13,7 +13,9 @@ public class StringUtils {
         }
 
         TEXT_RESULT = text.substring(0,1).toUpperCase() +
-                text.substring(1).trim().replaceAll("\\s+", " ");
+                text.substring(1)
+                        .trim().replaceAll("\\s+", " ")
+                        .toLowerCase();
         return TEXT_RESULT;
     }
 

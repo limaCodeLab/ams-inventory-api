@@ -1,13 +1,10 @@
 package com.skald.ats.inventory.api.config;
 
-import java.time.Instant;
 import java.util.Arrays;
 
 import com.skald.ats.inventory.api.config.environments.TestEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import com.skald.ats.inventory.api.model.entities.Category;
 import com.skald.ats.inventory.api.model.entities.Product;
