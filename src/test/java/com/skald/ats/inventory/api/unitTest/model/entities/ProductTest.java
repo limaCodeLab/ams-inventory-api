@@ -2,7 +2,7 @@ package com.skald.ats.inventory.api.unitTest.model.entities;
 
 import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
 import com.skald.ats.inventory.api.model.entities.Product;
-import com.skald.ats.inventory.api.unitTest.model.entities.messaging.ErrorEntityMsg;
+import com.skald.ats.inventory.api.unitTest.model.entities.messaging.ProductErrorMsg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProductTest {
 
-    ErrorEntityMsg errorEntityMsg = new ErrorEntityMsg();
-    Product product;
+    ProductErrorMsg expectedMessage = new ProductErrorMsg();
+    private Product product;
 
     @BeforeEach
     void setUp() {
@@ -44,7 +44,7 @@ public class ProductTest {
             ValidationDataException exception = assertThrows(ValidationDataException.class, () -> {
                 product.setName(param);
             });
-            assertEquals(errorEntityMsg.nameProduct, exception.getMessage());
+            assertEquals(expectedMessage.nameProduct, exception.getMessage());
         }
     }
 
@@ -57,7 +57,7 @@ public class ProductTest {
             ValidationDataException exception = assertThrows(ValidationDataException.class, () -> {
                 product.setSupplier(param);
             });
-            assertEquals(errorEntityMsg.supplierProduct, exception.getMessage());
+            assertEquals(expectedMessage.supplierProduct, exception.getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ public class ProductTest {
             ValidationDataException exception = assertThrows(ValidationDataException.class, () -> {
                 product.setCategory(param);
             });
-            assertEquals(errorEntityMsg.categoryProduct, exception.getMessage());
+            assertEquals(expectedMessage.categoryProduct, exception.getMessage());
         }
     }
 
@@ -84,7 +84,7 @@ public class ProductTest {
                 product.setUnitPrice(param);
             });
 
-            assertEquals(errorEntityMsg.unitPriceProduct, exception.getMessage());
+            assertEquals(expectedMessage.unitPriceProduct, exception.getMessage());
         }
     }
 
@@ -98,7 +98,7 @@ public class ProductTest {
                 product.setMinimalStockLevel(param);
             });
 
-            assertEquals(errorEntityMsg.minimalStockLevelProduct, exception.getMessage());
+            assertEquals(expectedMessage.minimalStockLevelProduct, exception.getMessage());
         }
     }
 
@@ -112,7 +112,7 @@ public class ProductTest {
                 product.setMaximumStockLevel(param);
             });
 
-            assertEquals(errorEntityMsg.maximumStockLevelProduct, exception.getMessage());
+            assertEquals(expectedMessage.maximumStockLevelProduct, exception.getMessage());
         }
     }
 
@@ -126,9 +126,8 @@ public class ProductTest {
                 product.setMaximumStockLevel(param);
             });
 
-            assertEquals(errorEntityMsg.maxStockRuleProduct, exception.getMessage());
+            assertEquals(expectedMessage.maxStockRuleProduct, exception.getMessage());
         }
     }
-
 
 }
