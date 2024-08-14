@@ -10,9 +10,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ProductTest {
+public class ProductTest implements ProductErrorMsg{
 
-    ProductErrorMsg expectedMessage = new ProductErrorMsg();
     private Product product;
 
     @BeforeEach
@@ -44,7 +43,7 @@ public class ProductTest {
             ValidationDataException exception = assertThrows(ValidationDataException.class, () -> {
                 product.setName(param);
             });
-            assertEquals(expectedMessage.nameProduct, exception.getMessage());
+            assertEquals(nameProductErrorMsg, exception.getMessage());
         }
     }
 
@@ -57,7 +56,7 @@ public class ProductTest {
             ValidationDataException exception = assertThrows(ValidationDataException.class, () -> {
                 product.setSupplier(param);
             });
-            assertEquals(expectedMessage.supplierProduct, exception.getMessage());
+            assertEquals(supplierProductErrorMsg, exception.getMessage());
         }
     }
 
@@ -70,7 +69,7 @@ public class ProductTest {
             ValidationDataException exception = assertThrows(ValidationDataException.class, () -> {
                 product.setCategory(param);
             });
-            assertEquals(expectedMessage.categoryProduct, exception.getMessage());
+            assertEquals(categoryProductErrorMsg, exception.getMessage());
         }
     }
 
@@ -84,7 +83,7 @@ public class ProductTest {
                 product.setUnitPrice(param);
             });
 
-            assertEquals(expectedMessage.unitPriceProduct, exception.getMessage());
+            assertEquals(unitPriceProductErrorMsg, exception.getMessage());
         }
     }
 
@@ -98,7 +97,7 @@ public class ProductTest {
                 product.setMinimalStockLevel(param);
             });
 
-            assertEquals(expectedMessage.minimalStockLevelProduct, exception.getMessage());
+            assertEquals(minimalStockProductErrorMsg, exception.getMessage());
         }
     }
 
@@ -112,7 +111,7 @@ public class ProductTest {
                 product.setMaximumStockLevel(param);
             });
 
-            assertEquals(expectedMessage.maximumStockLevelProduct, exception.getMessage());
+            assertEquals(maximumStockProductErrorMsg, exception.getMessage());
         }
     }
 
@@ -126,7 +125,7 @@ public class ProductTest {
                 product.setMaximumStockLevel(param);
             });
 
-            assertEquals(expectedMessage.maxStockRuleProduct, exception.getMessage());
+            assertEquals(maxStockRuleProductErrorMsg, exception.getMessage());
         }
     }
 
