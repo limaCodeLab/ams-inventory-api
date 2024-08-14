@@ -36,7 +36,6 @@ public class Product implements Serializable {
     @Column(nullable = false)
     private String supplier;
 
-    @Setter
     @NotNull(message = "Categoria deve ser informada")
     @Column(nullable = false)
     private String category;
