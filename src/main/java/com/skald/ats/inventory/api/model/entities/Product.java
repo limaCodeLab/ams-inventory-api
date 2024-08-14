@@ -32,12 +32,10 @@ public class Product implements Serializable {
     private String name;
     private String description;
 
-    @Setter
     @NotNull(message = "Fornecedor deve ser informado")
     @Column(nullable = false)
     private String supplier;
 
-    @Setter
     @NotNull(message = "Categoria deve ser informada")
     @Column(nullable = false)
     private String category;
@@ -58,6 +56,7 @@ public class Product implements Serializable {
     @NotNull(message = "Nível mínimo de estoque deve ser informado")
     @Column(name = "maximum_stock_level", nullable = false)
     private Integer maximumStockLevel;
+
     @Column(updatable = false)
     private LocalDateTime dateCreated;
 
@@ -71,8 +70,8 @@ public class Product implements Serializable {
         this.id = id;
         setName(name);
         setDescription(description);
-        this.supplier = supplier;
-        this.category = category;
+        setSupplier(supplier);
+        setCategory(category);
         setUnitPrice(unitPrice);
         setMinimalStockLevel(minimalStockLevel);
         setMaximumStockLevel(maximumStockLevel);
@@ -80,46 +79,81 @@ public class Product implements Serializable {
         this.status = status;
     }
 
+    public Product(String name, String description, String supplier,
+                   String category, Double unitPrice, Integer minimalStockLevel,
+                   Integer maximumStockLevel, String status) {
+        setName(name);
+        setDescription(description);
+        setSupplier(supplier);
+        setCategory(category);
+        setUnitPrice(unitPrice);
+        setMinimalStockLevel(minimalStockLevel);
+        setMaximumStockLevel(maximumStockLevel);
+        setDateCreated();
+        this.status = status;
+    }
+
+    public void setName(String name) {
+        Optional.ofNullable(name)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .orElseThrow(() -> new ValidationDataException("name","O nome do produto nao pode ser nulo"));
+        this.name = name.trim();
+    }
+
     public void setDescription(String description) {
         this.description = StringUtils.normalizeString(description);
     }
 
-    @PrePersist
-    public void setDateCreated() {
-        this.dateCreated = LocalDateTime.now();
+    public void setSupplier(String supplier) {
+        Optional.ofNullable(supplier)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .orElseThrow(() -> new ValidationDataException("supplier","Fornecedor do produto nao pode ser nulo"));
+        this.supplier = supplier;
+
+    }
+
+    public void setCategory(String category) {
+        Optional.ofNullable(category)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .orElseThrow(() -> new ValidationDataException("category","Categoria do produto nao pode ser nulo"));
+        this.category = category;
+
     }
 
     public void setUnitPrice(Double unitPrice) {
         Optional.ofNullable(unitPrice)
                 .filter(price -> price > 0)
-                .orElseThrow(() -> new ValidationDataException("unitPrice","Valor unitário deve ser maior que zero e nao pode ser nulo"));
+                .orElseThrow(() -> new ValidationDataException("unitPrice",
+                        "Valor unitário do produto deve ser maior que zero e nao pode ser nulo"));
         this.unitPrice = unitPrice;
     }
 
-    public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new ValidationDataException("name","O nome do produto nao pode ser nulo");
-        }
-        this.name = name;
-    }
-
-
     public void setMinimalStockLevel(Integer minimalStockLevel) {
         Optional.ofNullable(minimalStockLevel)
-                .orElseThrow(() -> new ValidationDataException("minimalStockLevel","Valor mínimo de estoque não pode ser nulo"));
-        if (minimalStockLevel <= 0){
-            throw new ValidationDataException("minimalStockLevel","Valor mínimo de estoque deve ser maior que zero");
-        }
+                .filter(level -> level > 0)
+                .orElseThrow(() -> new ValidationDataException("minimalStockLevel",
+                        "Nivel minimo de estoque deve ser maior que zero e nao pode ser nulo"));
         this.minimalStockLevel = minimalStockLevel;
     }
 
     public void setMaximumStockLevel(Integer maximumStockLevel) {
         Optional.ofNullable(maximumStockLevel)
-                .orElseThrow(() -> new ValidationDataException("maximumStockLevel","Valor máximo de estoque não pode ser nulo"));
+                .filter(level -> level > 0)
+                .orElseThrow(() -> new ValidationDataException("maximumStockLevel",
+                        "Nivel maximo de estoque deve ser maior que zero e nao pode ser nulo"));
         if (maximumStockLevel <= this.minimalStockLevel){
-            throw new ValidationDataException("maximumStockLevel","Valor máximo de estoque não pode ser menor ou igual ao nível mínimo de estoque");
+            throw new ValidationDataException("maximumStockLevel",
+                    "Nivel máximo de estoque não pode ser menor ou igual ao nível mínimo de estoque");
         }
         this.maximumStockLevel = maximumStockLevel;
+    }
+
+    @PrePersist
+    public void setDateCreated() {
+        this.dateCreated = LocalDateTime.now();
     }
 
     @Override
