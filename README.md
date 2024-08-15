@@ -63,13 +63,11 @@ SWAGGER API Link :
 
 Pré-requisitos: Java 21, PostgreSQL
 
-Variável  de Ambiente: 
+Variável  de Ambiente: SPRING_PROFILE
 
-Nome: SPRING_PROFILE
-
-Valor: 
-- test (Para execucao com banco em memória H2 Console)
-- dev (Para excucao com banco relacional PostgreeSQL)
+Valores: 
+- test (Para execução com banco em memória H2 Console)
+- dev (Para execução com banco relacional PostgreeSQL)
 
 ```bash
 # clonar repositório
