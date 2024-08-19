@@ -42,7 +42,7 @@ SWAGGER API Link :
 - Maven
 
 ## Implantação em produção
-- Back end: Render
+- Back end: Microsoft Azure
 - Banco de dados: Postgresql
 
 ## Testes
