@@ -21,7 +21,7 @@ O serviço Inventory é uma API RESTful desenvolvida para facilitar o gerenciame
 ## Regras de negócio 
 As regras de negócio do serviço Inventory estão detalhadas na Wiki.
 
-Link:
+Link: https://github.com/limaCodeLab/ams-inventory-api/wiki/Service-business-rules
 
 ## Documentações técnicas 
 A respectiva documentação também está disponível na Wiki.
