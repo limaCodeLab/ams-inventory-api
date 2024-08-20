@@ -43,10 +43,14 @@ public class Product implements Serializable {
     @Setter
     private String status;
 
-    @Positive
     @NotNull(message = "Valor unitário deve ser informado")
     @Column(name = "valor_unitario", nullable = false, precision = 2)
     private Double unitPrice;
+
+    @Positive
+    @NotNull(message = "Quantidade em estoque deve ser informada")
+    @Column(name = "quantity_on_hand", nullable = false)
+    private Integer quantityOnHand;
 
     @Min(value = 1, message = "Nível mínimo de estoque deve ser maior que zero")
     @NotNull(message = "Nível mínimo de estoque deve ser informado")
@@ -62,17 +66,20 @@ public class Product implements Serializable {
 
 
     public Product() {
+        quantityOnHand = 0;
     }
 
     public Product(Long id, String name, String description, String supplier,
                    String category, Double unitPrice, Integer minimalStockLevel,
-                   Integer maximumStockLevel, String status) {
+                   Integer maximumStockLevel, String status, Integer quantityOnHand) {
+        this();
         this.id = id;
         setName(name);
         setDescription(description);
         setSupplier(supplier);
         setCategory(category);
         setUnitPrice(unitPrice);
+        setQuantityOnHand(quantityOnHand);
         setMinimalStockLevel(minimalStockLevel);
         setMaximumStockLevel(maximumStockLevel);
         setDateCreated();
@@ -81,12 +88,14 @@ public class Product implements Serializable {
 
     public Product(String name, String description, String supplier,
                    String category, Double unitPrice, Integer minimalStockLevel,
-                   Integer maximumStockLevel, String status) {
+                   Integer maximumStockLevel, String status, Integer quantityOnHand) {
+        this();
         setName(name);
         setDescription(description);
         setSupplier(supplier);
         setCategory(category);
         setUnitPrice(unitPrice);
+        setQuantityOnHand(quantityOnHand);
         setMinimalStockLevel(minimalStockLevel);
         setMaximumStockLevel(maximumStockLevel);
         setDateCreated();
@@ -121,6 +130,14 @@ public class Product implements Serializable {
                 .orElseThrow(() -> new ValidationDataException("category","Categoria do produto nao pode ser nulo"));
         this.category = category;
 
+    }
+
+    public void setQuantityOnHand(Integer quantityOnHand) {
+        Optional.ofNullable(quantityOnHand)
+                .filter(qty -> qty > 0)
+                .orElseThrow(() -> new ValidationDataException("quantityOnHand",
+                        "Quantidade em estoque deve ser maior que zero e nao pode ser nulo"));
+        this.quantityOnHand = quantityOnHand;
     }
 
     public void setUnitPrice(Double unitPrice) {
@@ -173,7 +190,7 @@ public class Product implements Serializable {
         return "Product [id=" + id + ", name=" + name + ", description=" + description + ", supplier=" + supplier
                 + ", category=" + category + ", costPrice=" + unitPrice + ", minimalStockLevel=" + minimalStockLevel
                 + ", maximumStockLevel=" + maximumStockLevel + ", dateCreated=" + dateCreated
-                + ", status=" + status + "]";
+                + ", status=" + status + ", quantityOnHand=" + quantityOnHand + "]";
     }
 
 }

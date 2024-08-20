@@ -18,7 +18,7 @@ public class ProductTest implements ProductErrorMsg{
     void setUp() {
         product = new Product("Filtro de Óleo","Filtro de óleo pARa    MOtor   ",
                 "Fornecedor A", "Filtros", 26.50,
-                5, 100, "disponível");
+                5, 100, "disponível", 0);
     }
 
     @Test

@@ -34,11 +34,11 @@ public class TestConfig implements CommandLineRunner {
 
         Product product01 = new Product(null,"Filtro de Óleo","Filtro de óleo para motor", 
         "Fornecedor A", "Filtros", 26.50,
-        5, 100, "disponível");
+        5, 100, "disponível", 20);
 
         Product product02 = new Product(null,"Bateria 12V","Bateria automotiva 12V 60Ah", 
         "Fornecedor C", "Baterias", 150.00,
-        1, 5, "disponível");
+        1, 5, "disponível", 10);
 
         productRepository.saveAll(Arrays.asList(product01, product02));
 
