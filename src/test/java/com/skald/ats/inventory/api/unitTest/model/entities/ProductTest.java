@@ -1,7 +1,7 @@
 package com.skald.ats.inventory.api.unitTest.model.entities;
 
-import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
-import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.exception.ValidationDataException;
+import com.skald.ats.inventory.api.model.Product;
 import com.skald.ats.inventory.api.unitTest.model.entities.messaging.ProductErrorMsg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

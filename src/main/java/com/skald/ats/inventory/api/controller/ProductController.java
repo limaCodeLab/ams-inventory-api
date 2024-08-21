@@ -1,6 +1,6 @@
 package com.skald.ats.inventory.api.controller;
 
-import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.model.Product;
 import com.skald.ats.inventory.api.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,12 @@
-package com.skald.ats.inventory.api.model.entities;
+package com.skald.ats.inventory.api.model;
 
-import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
-import com.skald.ats.inventory.api.util.StringUtils;
+import com.skald.ats.inventory.api.exception.ValidationDataException;
+import com.skald.ats.inventory.api.utils.StringUtils;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,8 +29,10 @@ public class Product implements Serializable {
     private Long id;
 
     @NotNull(message = "Nome deve ser informado")
+    @Size(min = 3, max = 100, message = "Nome deve ter entre 3 e 100 caracteres")
     @Column(nullable = false, length = 100)
     private String name;
+
     private String description;
 
     @NotNull(message = "Fornecedor deve ser informado")

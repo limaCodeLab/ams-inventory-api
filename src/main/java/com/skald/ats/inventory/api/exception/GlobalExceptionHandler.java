@@ -1,9 +1,5 @@
-package com.skald.ats.inventory.api.controller.exceptions;
+package com.skald.ats.inventory.api.exception;
 
-import com.skald.ats.inventory.api.service.exceptions.DatabaseException;
-import com.skald.ats.inventory.api.service.exceptions.NoHandlerFoundException;
-import com.skald.ats.inventory.api.service.exceptions.ResourceNotFoundException;
-import com.skald.ats.inventory.api.service.exceptions.ValidationDataException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resourceNotFound (ResourceNotFoundException e, HttpServletRequest request) {
