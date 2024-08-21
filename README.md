@@ -56,6 +56,7 @@ SWAGGER API Link :
 
 ## Documentações
 - Swagger API
+- Javadoc
 - GitHub Wiki
 - Lucidchart UML
 
