@@ -26,6 +26,7 @@
 		<hamcrest.version>3.0</hamcrest.version>
 		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
 	 	<maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+		<modelmapper.version>3.2.1</modelmapper.version>
 	</properties>
 
 	<dependencies>
@@ -105,6 +106,11 @@
 			<artifactId>hamcrest</artifactId>
 			<version>${hamcrest.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>${modelmapper.version}</version>
 		</dependency>
 
 	</dependencies>
