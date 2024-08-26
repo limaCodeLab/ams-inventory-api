@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -23,7 +22,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resourceNotFound (ResourceNotFoundException e, HttpServletRequest request) {
         String error = "Resource not found";
-        HttpStatus status = HttpStatus.NOT_FOUND;
+        status = HttpStatus.NOT_FOUND;
         StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
@@ -31,7 +30,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DatabaseException.class)
     public ResponseEntity<StandardError> database (DatabaseException e, HttpServletRequest request) {
         String error = "Database error";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        status = HttpStatus.BAD_REQUEST;
         StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
@@ -39,7 +38,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<StandardError> noResourceFound (NoHandlerFoundException e, HttpServletRequest request) {
         String error = "Endpoint not found";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        status = HttpStatus.BAD_REQUEST;
         StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
@@ -47,7 +46,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ValidationDataException.class)
     public ResponseEntity<StandardError> violationRule (ValidationDataException e, HttpServletRequest request) {
         String error = "Validation data error";
-        HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+        status = HttpStatus.UNPROCESSABLE_ENTITY;
         StandardError bodyResponseError = new StandardError(status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
@@ -55,7 +54,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<StandardError> jsonInvalid (NullPointerException e, HttpServletRequest request) {
         String error = "Null pointer exception";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+        status = HttpStatus.BAD_REQUEST;
         StandardError bodyResponseError = new StandardError(status.value(), error,"Null value: " +  e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
