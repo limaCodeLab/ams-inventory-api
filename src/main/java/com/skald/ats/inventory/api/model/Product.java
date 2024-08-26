@@ -23,7 +23,7 @@ public class Product implements Serializable {
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false, length = 100)
     private String name;
 
@@ -49,7 +49,6 @@ public class Product implements Serializable {
     @Column(name = "maximum_stock_level", nullable = false)
     private Integer maximumStockLevel;
 
-    @Setter(AccessLevel.NONE)
     @Column(updatable = false)
     private LocalDateTime dateCreated;
 
