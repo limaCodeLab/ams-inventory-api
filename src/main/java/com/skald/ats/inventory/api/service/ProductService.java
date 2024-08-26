@@ -6,6 +6,7 @@ import com.skald.ats.inventory.api.model.Product;
 import com.skald.ats.inventory.api.repository.ProductRepository;
 import com.skald.ats.inventory.api.service.validations.DataProductValidator;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,16 @@ public class ProductService {
     public Product convertToEntity(ProductDTO productDTO) {
         return modelMapper.map(productDTO, Product.class);
     }
+    @Transactional
+    public Product saveProduct(Product product) {
+        return repository.save(product);
+    }
+
+    public Product insertProduct(ProductDTO productDTO) {
+        dataValidation.productDataIsValid(productDTO);
+        Product product = convertToEntity(productDTO);
+        return saveProduct(product);
+    }
 
     public List<Product> findAll() {
         return repository.findAllByOrderByIdAsc();
@@ -40,12 +51,6 @@ public class ProductService {
     public Product findById(Long id) {
         Optional<Product> product = repository.findById(id);
         return product.orElseThrow(() -> new ResourceNotFoundException(id));
-    }
-
-    public Product insertProduct(ProductDTO productDTO) {
-        dataValidation.validateMaxStockLevel(productDTO);
-        Product product = convertToEntity(productDTO);
-        return repository.save(product);
     }
 
     public Product update(Long id, Product product) {

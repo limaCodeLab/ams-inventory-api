@@ -7,13 +7,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataProductValidator {
 
-    public void validateMaxStockLevel(ProductDTO productDTO) throws ValidationDataException{
-        if (productDTO.getMaximumStockLevel() <= productDTO.getMinimalStockLevel()){
+    public void productDataIsValid(ProductDTO productDTO) throws ValidationDataException{
+        validateMinStockLevel(productDTO);
+    }
+
+    public void validateMinStockLevel(ProductDTO productDTO) throws ValidationDataException{
+        if (productDTO.getMinimalStockLevel() >= productDTO.getMaximumStockLevel()){
+            throw new ValidationDataException("minimalStockLevel",
+                    "Nivel minimo de estoque não pode ser maior ou igual ao nível maximo de estoque");
+        }
+        if (productDTO.getMinimalStockLevel() <= 0){
             throw new ValidationDataException("maximumStockLevel",
-                    "Nivel máximo de estoque não pode ser menor ou igual ao nível mínimo de estoque");
+                    "Nivel minimo de estoque não pode ser menor ou igual a zero");
         }
 
     }
+
 
 
 }
