@@ -1,6 +1,7 @@
 package com.skald.ats.inventory.api.model;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,9 +20,10 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @Column(nullable = false, length = 100)
     private String name;
 
@@ -47,10 +49,18 @@ public class Product implements Serializable {
     @Column(name = "maximum_stock_level", nullable = false)
     private Integer maximumStockLevel;
 
+    @Setter(AccessLevel.NONE)
     @Column(updatable = false)
     private LocalDateTime dateCreated;
 
     public Product(){}
+
+    @PrePersist
+    @PreUpdate
+    private void trimFields(){
+        this.name = (name != null) ? name.trim() : null;
+        this.description = (description != null) ? description.trim() : null;
+    }
 
     @Override
     public boolean equals(Object o) {

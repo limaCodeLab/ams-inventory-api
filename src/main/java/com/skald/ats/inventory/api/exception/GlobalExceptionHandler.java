@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    private HttpStatus status;
+    private String errorMessage;
+    private String fieldName;
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resourceNotFound (ResourceNotFoundException e, HttpServletRequest request) {
@@ -56,18 +61,17 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<StandardError> notAtributeOnjson (MethodArgumentNotValidException e, HttpServletRequest request) {
-        String nameError = "Not atribute on json";
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-
+    public ResponseEntity<StandardError> validationData (MethodArgumentNotValidException e, HttpServletRequest request) {
         Map<String, String> errors = new HashMap<>();
-        List<FieldError> fildErrors = e.getBindingResult().getFieldErrors();
-        for (FieldError error : fildErrors) {
-            errors.put("Atributo:'" + error.getField() + "'",
-                    " " + error.getDefaultMessage());
+        String nameError = "Validation data error";
+        status = HttpStatus.UNPROCESSABLE_ENTITY;
+
+        for (FieldError error : e.getBindingResult().getFieldErrors()) {
+            fieldName = error.getField();
+            errorMessage = Objects.requireNonNull(error.getDefaultMessage()).replaceAll("[={}]", "");
         }
-        String messageError = errors.toString().replaceAll("[={}]", "");
-        StandardError bodyResponseError = new StandardError(status.value(), nameError, messageError, request.getRequestURI());
+
+        StandardError bodyResponseError = new StandardError(status.value(), nameError, "'" + fieldName + "' -> " + errorMessage, request.getRequestURI());
         return ResponseEntity.status(status).body(bodyResponseError);
     }
 
