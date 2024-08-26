@@ -1,28 +1,26 @@
 package com.skald.ats.inventory.api.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.skald.ats.inventory.api.dto.ProductDTO;
+import com.skald.ats.inventory.api.exception.ResourceNotFoundException;
+import com.skald.ats.inventory.api.model.Product;
+import com.skald.ats.inventory.api.repository.ProductRepository;
 import com.skald.ats.inventory.api.service.validations.DataProductValidator;
-import jakarta.validation.Valid;
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skald.ats.inventory.api.model.Product;
-import com.skald.ats.inventory.api.repository.ProductRepository;
-import com.skald.ats.inventory.api.exception.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
 
-    private final ProductRepository repository;
+    final ProductRepository repository;
 
-    private ModelMapper modelMapper;
+    final ModelMapper modelMapper;
 
-    private DataProductValidator dataValidation;
+    final DataProductValidator dataValidation;
 
     @Autowired
     public ProductService(ProductRepository repository, ModelMapper modelMapper, DataProductValidator dataProductValidator) {
