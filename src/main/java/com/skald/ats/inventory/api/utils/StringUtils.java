@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.util;
+package com.skald.ats.inventory.api.utils;
 
 import org.springframework.stereotype.Component;
 

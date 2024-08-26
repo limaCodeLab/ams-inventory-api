@@ -3,19 +3,37 @@ package com.skald.ats.inventory.api.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.skald.ats.inventory.api.dto.ProductDTO;
+import com.skald.ats.inventory.api.service.validations.DataProductValidator;
+import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.model.Product;
 import com.skald.ats.inventory.api.repository.ProductRepository;
-import com.skald.ats.inventory.api.service.exceptions.ResourceNotFoundException;
+import com.skald.ats.inventory.api.exception.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ProductService {
 
+    private final ProductRepository repository;
+
+    private ModelMapper modelMapper;
+
+    private DataProductValidator dataValidation;
+
     @Autowired
-    private ProductRepository repository;
+    public ProductService(ProductRepository repository, ModelMapper modelMapper, DataProductValidator dataProductValidator) {
+        this.modelMapper = modelMapper;
+        this.repository = repository;
+        this.dataValidation = dataProductValidator;
+    }
+
+    public Product convertToEntity(ProductDTO productDTO) {
+        return modelMapper.map(productDTO, Product.class);
+    }
 
     public List<Product> findAll() {
         return repository.findAllByOrderByIdAsc();
@@ -26,7 +44,9 @@ public class ProductService {
         return product.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public Product insert(Product product) {
+    public Product insertProduct(ProductDTO productDTO) {
+        dataValidation.validateMaxStockLevel(productDTO);
+        Product product = convertToEntity(productDTO);
         return repository.save(product);
     }
 
@@ -42,14 +62,15 @@ public class ProductService {
     }
 
     public void updateProductData(Product entity, Product product) {
-        entity.setName(product.getName());
-        entity.setDescription(product.getDescription());
-        entity.setSupplier(product.getSupplier());
-        entity.setCategory(product.getCategory());
-        entity.setUnitPrice(product.getUnitPrice());
-        entity.setMinimalStockLevel(product.getMinimalStockLevel());
-        entity.setMaximumStockLevel(product.getMaximumStockLevel());
-        entity.setStatus(product.getStatus());
+//        entity.setName(product.getName());
+//        entity.setDescription(product.getDescription());
+//        entity.setSupplier(product.getSupplier());
+//        entity.setCategory(product.getCategory());
+//        entity.setUnitPrice(product.getUnitPrice());
+//        entity.setMinimalStockLevel(product.getMinimalStockLevel());
+//        entity.setMaximumStockLevel(product.getMaximumStockLevel());
+//        entity.setStatus(product.getStatus());
     }
+
 
 }

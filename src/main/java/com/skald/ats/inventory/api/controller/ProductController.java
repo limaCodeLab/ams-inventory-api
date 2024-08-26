@@ -1,6 +1,7 @@
 package com.skald.ats.inventory.api.controller;
 
-import com.skald.ats.inventory.api.model.entities.Product;
+import com.skald.ats.inventory.api.dto.ProductDTO;
+import com.skald.ats.inventory.api.model.Product;
 import com.skald.ats.inventory.api.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,13 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    private final ProductService service;
+
     @Autowired
-    private ProductService service;
-    
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
+
     @GetMapping
     public ResponseEntity<List<Product>> findAll() {
         List<Product> products = service.findAll();
@@ -31,12 +36,11 @@ public class ProductController {
     }
 
     @PostMapping( headers = "Content-Type=application/json")
-    public ResponseEntity<Product> registerItem(@Valid @RequestBody Product product) {
-        Product item = service.insert(product);
+    public ResponseEntity<Product> registerItem(@Valid @RequestBody ProductDTO productDTO) {
+        Product item = service.insertProduct(productDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(item.getId()).toUri();
         return ResponseEntity.created(uri).body(item);
-
     }
 
     @PutMapping(params = "id", headers = "Content-Type=application/json")
