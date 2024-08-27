@@ -27,6 +27,7 @@
 		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
 	 	<maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
 		<modelmapper.version>3.2.1</modelmapper.version>
+		<swagger.version>2.2.2</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -111,6 +112,11 @@
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>${modelmapper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger.version}</version>
 		</dependency>
 
 	</dependencies>
