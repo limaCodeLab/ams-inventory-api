@@ -27,7 +27,8 @@
 		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
 	 	<maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
 		<modelmapper.version>3.2.1</modelmapper.version>
-		<swagger.version>2.2.2</swagger.version>
+		<springfox-swagger2.version>3.0.0</springfox-swagger2.version>
+		<springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
 	</properties>
 
 	<dependencies>
@@ -114,10 +115,16 @@
 			<version>${modelmapper.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.swagger.core.v3</groupId>
-			<artifactId>swagger-annotations</artifactId>
-			<version>${swagger.version}</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger2.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger-ui.version}</version>
+		</dependency>
+
 
 	</dependencies>
 
