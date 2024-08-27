@@ -3,6 +3,8 @@ package com.skald.ats.inventory.api.controller;
 import com.skald.ats.inventory.api.dto.ProductDTO;
 import com.skald.ats.inventory.api.model.Product;
 import com.skald.ats.inventory.api.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@Tag(name = "Produtos", description = "Gerenciamento de produtos")
 public class ProductController {
 
     private final ProductService service;
@@ -35,6 +38,7 @@ public class ProductController {
         return ResponseEntity.ok().body(product);
     }
 
+    @Operation(summary = "Cadastra um novo produto")
     @PostMapping( headers = "Content-Type=application/json")
     public ResponseEntity<Product> registerItem(@Valid @RequestBody ProductDTO productDTO) {
         Product item = service.insertProduct(productDTO);

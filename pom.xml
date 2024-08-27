@@ -27,8 +27,7 @@
 		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
 	 	<maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
 		<modelmapper.version>3.2.1</modelmapper.version>
-		<springfox-swagger2.version>3.0.0</springfox-swagger2.version>
-		<springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
+		<springdoc.version>1.8.0</springdoc.version>
 	</properties>
 
 	<dependencies>
@@ -115,16 +114,20 @@
 			<version>${modelmapper.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox-swagger2.version}</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-webmvc-core</artifactId>
+			<version>${springdoc.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox-swagger-ui.version}</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-security</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
 
 	</dependencies>
 
