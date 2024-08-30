@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @SpringBootApplication
-@ComponentScan("com.skald.ats.inventory.api")
 public class AmsInventoryApiApplication {
 
 	public static void main(String[] args) {
