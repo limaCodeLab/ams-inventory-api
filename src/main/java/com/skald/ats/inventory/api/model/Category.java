@@ -3,10 +3,12 @@ package com.skald.ats.inventory.api.model;
 import java.io.Serial;
 import java.io.Serializable;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+@Hidden
 @Getter
 @Entity
 @Table(name = "tb_categories")
