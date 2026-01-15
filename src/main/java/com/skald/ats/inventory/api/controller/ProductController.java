@@ -1,7 +1,7 @@
 package com.skald.ats.inventory.api.controller;
 
 import com.skald.ats.inventory.api.dto.ProductDTO;
-import com.skald.ats.inventory.api.model.Product;
+import com.skald.ats.inventory.api.model.products.Product;
 import com.skald.ats.inventory.api.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

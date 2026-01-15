@@ -6,8 +6,7 @@ import com.skald.ats.inventory.api.config.environments.TestEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
-import com.skald.ats.inventory.api.model.Category;
-import com.skald.ats.inventory.api.model.Product;
+import com.skald.ats.inventory.api.model.products.Category;
 import com.skald.ats.inventory.api.repository.CategoryRepository;
 import com.skald.ats.inventory.api.repository.ProductRepository;
 

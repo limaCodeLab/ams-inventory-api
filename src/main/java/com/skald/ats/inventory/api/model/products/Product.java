@@ -1,4 +1,4 @@
-package com.skald.ats.inventory.api.model;
+package com.skald.ats.inventory.api.model.products;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;

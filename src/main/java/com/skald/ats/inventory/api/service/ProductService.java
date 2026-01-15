@@ -2,7 +2,7 @@ package com.skald.ats.inventory.api.service;
 
 import com.skald.ats.inventory.api.dto.ProductDTO;
 import com.skald.ats.inventory.api.exception.ResourceNotFoundException;
-import com.skald.ats.inventory.api.model.Product;
+import com.skald.ats.inventory.api.model.products.Product;
 import com.skald.ats.inventory.api.repository.ProductRepository;
 import com.skald.ats.inventory.api.service.validations.DataProductValidator;
 import jakarta.persistence.EntityNotFoundException;
